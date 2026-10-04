@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy and data</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.55 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid #8886;padding:.4rem .6rem;text-align:left;vertical-align:top}code{background:#8883;padding:.1em .3em;border-radius:3px}h1,h2{line-height:1.25}nav{margin-bottom:1.5rem}</style>
+</head>
+<body>
+<nav><a href="index.html">Home</a></nav>
+<h1>Privacy and data</h1>
+<h2>Summary</h2>
+<p>The gadgets run on Atlassian's Forge platform with no remote components, which is the design the Runs on Atlassian program requires (Forge's own check, <code>forge eligibility</code>, says each version is eligible). They have no servers of ours, no database, no remote calls and no external network access. Jira data is read when someone opens a dashboard, turned into numbers in memory, shown on the screen, and discarded.</p>
+<h2>Who is responsible</h2>
+<p>The vendor, Eitan Plaks, is responsible for how these apps process your Jira data. Atlassian is not.</p>
+<h2>Roles under data protection law</h2>
+<p>When someone opens a gadget, the app reads Jira data on behalf of the customer. For that data the customer is the controller and the vendor is a processor. The vendor's code runs on Atlassian's Forge platform, so Atlassian acts as a sub-processor under Atlassian's Forge data processing addendum. The vendor does not receive, store or read this data, and the apps are built so that it does not appear in the logs the vendor can see.</p>
+<p>The vendor is a controller only for the messages people send to support (see Support correspondence below).</p>
+<p>A data processing addendum is part of the <a href="terms.html">terms</a>.</p>
+<h2>What each gadget reads</h2>
+<p>Every call is made as the person looking at the dashboard, with that person's Jira permissions.</p>
+<table><thead><tr><th>Gadget</th><th>Reads</th><th>Jira permission (scope) and why</th></tr></thead><tbody><tr><td>All three</td><td>Issues found by JQL: key, summary, type, priority, status, assignee name, dates (created, resolved, when the status category last changed), estimates, time spent, story points, change history; field and status lists; filters</td><td><code>read:jira-work</code>: search issues, read fields, statuses, filters and change history</td></tr><tr><td>Scope Creep &amp; Churn</td><td>Boards, their sprints, a board's filter and estimation field</td><td><code>read:board-scope:jira-software</code> (list boards), <code>read:sprint:jira-software</code> (read sprints), <code>read:board-scope.admin:jira-software</code> (read a board's configuration), <code>read:project:jira</code> (required by Jira's board endpoints)</td></tr></tbody></table>
+<p>The gadgets make no write calls to Jira. All granted scopes are read scopes.</p>
+<h2>What is stored</h2>
+<ul><li><strong>By us:</strong> nothing from Jira. The apps use no storage and no database.</li><li><strong>By Jira:</strong> each gadget's settings (board, JQL filters, number of months or days) are kept by Jira as part of the dashboard. The settings form hands them to Jira when you save, and Jira stores them with the dashboard; the apps keep no copy.</li><li><strong>Logs:</strong> when an unexpected error happens, the app writes the error name and status to the Forge log. For a programming error in our own code it also writes the error message; it never writes a JQL filter, an issue key or any issue content. Each dashboard view also writes one line with a count of Jira API points used (a number, no content). The vendor can see Forge logs for the app.</li><li><strong>Retention:</strong> there is no Jira data to keep, so there is no retention period.</li></ul>
+<h2>Personal data in Jira</h2>
+<p>The gadgets show names that Jira returns, such as the assignee of an issue or the person who added an issue to a sprint. They do not copy, keep or send those names anywhere.</p>
+<h2>Support correspondence</h2>
+<p>This is the only personal data the vendor holds, and the vendor is its controller.</p>
+<ul><li><strong>What:</strong> the e-mail address and name of the person who writes to support, the message, and anything attached to it.</li><li><strong>Why:</strong> to answer the request and to keep a record of the answer. The legal basis is the vendor's legitimate interest in answering and recording requests. It is not used for marketing and is not sold.</li><li><strong>Where:</strong> support is by e-mail only. Mail to the support address is forwarded by Cloudflare (Email Routing) to the vendor's mailbox at Google (Gmail). Both providers may process it in several countries, including the United States. There is no public issue tracker.</li><li><strong>Who gets it:</strong> Cloudflare, which forwards the mail, and Google, which hosts the mailbox. The vendor passes details to Atlassian only when a request concerns a security incident or Atlassian itself escalates it, and then only what that case needs.</li><li><strong>Transfers:</strong> for transfers to the United States the vendor relies on the safeguards those two providers publish, such as standard contractual clauses or Data Privacy Framework certification.</li><li><strong>How long:</strong> the vendor deletes support messages once 12 months have passed since the last message in the thread, at a yearly clean-up each December, so no later than 24 months after it. A record kept because the law or Atlassian requires it is the exception.</li></ul>
+<h2>Where Jira data is processed and stored</h2>
+<p>The vendor stores no Jira data in any country. The processing happens on Atlassian's Forge infrastructure. Atlassian's Forge documentation says an app invocation may sometimes run in a different location from the one that hosts your Jira site; Atlassian's data processing addendum covers that case. The Forge log holds no Jira data.</p>
+<h2>Who gets the data</h2>
+<p>Nobody outside Atlassian, which hosts the apps and provides the Jira API. The vendor shares no Jira data with any other person or company, and the apps declare no external hosts. Support messages are covered in the section above.</p>
+<h2>Your rights</h2>
+<p>Because the vendor holds no Jira data, a request to see, correct or erase that data goes to your Jira administrator, who controls it. For anything the vendor holds, such as a support message, write to the address below. You can also complain to Israel's Privacy Protection Authority or, if you are in the EU, to your national data protection authority.</p>
+<h2>Contact</h2>
+<p>Eitan Plaks, jira@cooloffapp.com</p>
+</body>
+</html>

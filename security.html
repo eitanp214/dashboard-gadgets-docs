@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.55 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid #8886;padding:.4rem .6rem;text-align:left;vertical-align:top}code{background:#8883;padding:.1em .3em;border-radius:3px}h1,h2{line-height:1.25}nav{margin-bottom:1.5rem}</style>
+</head>
+<body>
+<nav><a href="index.html">Home</a></nav>
+<h1>Security</h1>
+<h2>Design</h2>
+<ul><li><strong>Least privilege.</strong> Every permission is a read permission, so the gadgets cannot create, change or delete anything in Jira. The list of permissions and the reason for each is in <a href="privacy.html">Privacy and data</a>.</li><li><strong>Least data egress.</strong> The apps run entirely on Atlassian's Forge platform. They declare no external hosts and make no calls outside Atlassian.</li><li><strong>No stored data.</strong> There is no database and no file storage. Results are computed per request and discarded.</li><li><strong>Acting as the viewer.</strong> Calls to Jira are made as the person looking at the dashboard, so Jira's own permissions decide what each person sees.</li><li><strong>Untrusted input.</strong> JQL filters and board and sprint ids typed into the settings are validated (length, balanced parentheses, digits only for ids). Everything that comes back from Jira is escaped before it is put on the screen.</li><li><strong>Dependencies.</strong> Runtime dependencies are limited to Atlassian's Forge packages. <code>npm audit</code> for the runtime dependencies reports no findings (checked 4 Oct 2026).</li></ul>
+<h2>Reporting a vulnerability</h2>
+<p>Write to jira@cooloffapp.com with the app name, the version and the steps to reproduce. Please do not include customer data. A report is acknowledged within 3 business days. Confirmed vulnerabilities are handled under the Atlassian Marketplace Security Bug Fix Policy.</p>
+<h2>If something goes wrong</h2>
+<ol><li><strong>Investigate.</strong> Find the cause from the logs and the code, decide whether any end-user data could be affected (the apps keep none; the support mailbox is the only store), and which versions are involved.</li><li><strong>Tell Atlassian.</strong> Promptly and within 24 hours, by raising a P1 ticket as Atlassian's incident guidelines ask, and keep it updated at least every 6 hours while the incident is open.</li><li><strong>Contain it.</strong> Hide or delist the app, and release a version that turns the affected feature off while the fix is built.</li><li><strong>Fix and release.</strong> Under the Marketplace Security Bug Fix Policy a critical vulnerability in a cloud app is fixed within 10 days and a high one within 4 weeks of being reported or triaged.</li><li><strong>Tell customers.</strong> Without undue delay and within 72 hours of becoming aware, by a notice inside the gadgets and in the Marketplace listing, and by e-mail where the vendor holds a contact. A notice that refers to Atlassian goes out once Atlassian approves it, as the Marketplace Partner Agreement requires; the vendor asks for that approval in the P1 ticket.</li><li><strong>Review.</strong> Write a short account of the cause, the impact and the fix, and keep it with the release notes.</li></ol>
+<h2>Vendor controls</h2>
+<p>Source code is kept in a private repository.<br>
+The apps hold no secrets and no customer credentials, so there is nothing of that kind to rotate or leak.</p>
+</body>
+</html>

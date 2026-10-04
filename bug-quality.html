@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bug Aging &amp; Reopen Rate for Jira</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.55 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid #8886;padding:.4rem .6rem;text-align:left;vertical-align:top}code{background:#8883;padding:.1em .3em;border-radius:3px}h1,h2{line-height:1.25}nav{margin-bottom:1.5rem}</style>
+</head>
+<body>
+<nav><a href="index.html">Home</a></nav>
+<h1>Bug Aging &amp; Reopen Rate for Jira</h1>
+<p>Shows open bugs by age and priority, how often fixed bugs come back, how long fixes take, and, if you set it up, how many new bugs escaped.</p>
+<h2>Set up</h2>
+<p>Add the gadget, open its three-dot menu, choose <strong>Configure</strong> and fill in:</p>
+<ul><li><strong>Bug filter (JQL).</strong> Which bugs count. The default is <code>issuetype = Bug</code>. Use it to limit the gadget to a project, a set of projects or a component, for example <code>project in (APP, API) AND issuetype = Bug</code>.</li><li><strong>Escaped-bug filter (JQL), optional.</strong> Which of those bugs count as escaped, for example <code>labels = customer-found</code> or <code>priority in (Highest, High)</code>. Leave it empty to hide the escape rate.</li><li><strong>Months.</strong> How many months of trend to show: 3, 6, 9 or 12 (default 6).</li></ul>
+<h2>What the numbers mean</h2>
+<table><thead><tr><th>Figure</th><th>Definition</th></tr></thead><tbody><tr><td>Open bugs</td><td>Bugs whose status is not in the Done category</td></tr><tr><td>Median age</td><td>Median days since creation of the open bugs</td></tr><tr><td>85% are younger than</td><td>The age that 85% of open bugs are below</td></tr><tr><td>Time to fix</td><td>Days from creation to the moment the bug was resolved, for bugs that are resolved and not open now, by month of resolution; median and 85th percentile. The moment is the resolution date, or when the bug entered the Done category if the workflow sets no resolution</td></tr><tr><td>Reopen rate</td><td>Moves from a Done status back to an open one in a month, divided by resolutions in that month. It can pass 100%</td></tr><tr><td>Most reopened</td><td>Bugs with the most reopen events inside the trend window</td></tr><tr><td>Escape rate</td><td>Share of bugs created in a month that also match the escaped-bug filter</td></tr></tbody></table>
+<p>Status categories decide what is open, and a bug moved to Done without a resolution date still counts as fixed, so custom workflows need no setup.</p>
+<h2>Limits</h2>
+<ul><li>Up to 600 bugs are read: all open ones plus those resolved inside the trend window. If there are more, the gadget says "more than 600" and shows what it read.</li><li>Up to 1,000 escaped bugs are read. If there are more, the escape rate is a lower bound and the gadget says so.</li><li>Statuses that no longer belong to an active workflow cannot be classified. Transitions through them are counted and reported in a note, not guessed.</li><li>Month buckets use UTC.</li></ul>
+</body>
+</html>

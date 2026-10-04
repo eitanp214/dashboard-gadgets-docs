@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard gadgets for Jira Cloud</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.55 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid #8886;padding:.4rem .6rem;text-align:left;vertical-align:top}code{background:#8883;padding:.1em .3em;border-radius:3px}h1,h2{line-height:1.25}nav{margin-bottom:1.5rem}</style>
+</head>
+<body>
+<h1>Dashboard gadgets for Jira Cloud</h1>
+<p>Three gadgets that read your Jira data and show it on a dashboard. They make no write calls to Jira and send nothing outside Atlassian. The apps keep no data of their own; Jira keeps each gadget's settings with the dashboard.</p>
+<table><thead><tr><th>Gadget</th><th>Answers</th></tr></thead><tbody><tr><td><a href="sprint-scope.html">Scope Creep &amp; Churn</a></td><td>What changed in a sprint after it started, and how much of the commitment was delivered</td></tr><tr><td><a href="bug-quality.html">Bug Aging &amp; Reopen Rate</a></td><td>How old open bugs are, how often fixes come back, how long fixes take, how many bugs escaped</td></tr><tr><td><a href="estimate-accuracy.html">Estimate vs Actual</a></td><td>How close estimates are to logged time, and whether story points predict cycle time</td></tr></tbody></table>
+<h2>Add a gadget to a dashboard</h2>
+<ol><li>Open a dashboard and choose <strong>Edit</strong>.</li><li>Choose <strong>Add gadget</strong> and pick the gadget by name.</li><li>Open the gadget's three-dot menu, choose <strong>Configure</strong>, fill in the settings and save.</li></ol>
+<p>Each person who opens the dashboard sees the data they are allowed to see in Jira. Two people can see different numbers from the same gadget.</p>
+<h2>Things that apply to all three</h2>
+<ul><li><strong>Time limit.</strong> A gadget has about 18 seconds to read Jira. When a project is too big to read in that time, or hits the issue cap listed on its page, the gadget says so above the numbers instead of showing a partial result as if it were complete.</li><li><strong>Jira's hourly allowance.</strong> Jira limits how many calls an app can make per hour, and all sites that use an app share that allowance. If it is used up, the gadget says so and can show data again when the next hour starts (UTC).</li><li><strong>Time zone.</strong> Day and month buckets use UTC. JQL dates are read in the viewer's Jira time zone, so figures at the edge of a window can differ by up to a day.</li><li><strong>Filters.</strong> The bug and estimate gadgets take a JQL filter. Anything after <code>ORDER BY</code> is ignored.</li><li><strong>Done without a resolution.</strong> Work moved to a Done status in a workflow that never sets Resolution is still counted. Its date is the moment it became Done.</li><li><strong>Permissions.</strong> See <a href="privacy.html">Privacy and data</a> for what each gadget reads and why.</li></ul>
+<p>Support: see <a href="support.html">Support</a>. Terms: <a href="terms.html">Provider-specific terms</a>, <a href="dpa.html">Data processing addendum</a> and <a href="privacy.html">Privacy and data</a>.</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scope Creep &amp; Churn for Jira</title>
+<style>:root{color-scheme:light dark}body{font:16px/1.55 system-ui,sans-serif;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}th,td{border:1px solid #8886;padding:.4rem .6rem;text-align:left;vertical-align:top}code{background:#8883;padding:.1em .3em;border-radius:3px}h1,h2{line-height:1.25}nav{margin-bottom:1.5rem}</style>
+</head>
+<body>
+<nav><a href="index.html">Home</a></nav>
+<h1>Scope Creep &amp; Churn for Jira</h1>
+<p>For one sprint, the gadget shows what was committed when the sprint started, what was added and removed afterwards, who did it and on which day, and how much of the original commitment was delivered.</p>
+<h2>Set up</h2>
+<p>Add the gadget, open its three-dot menu, choose <strong>Configure</strong> and pick a board. The settings list the first 200 boards; type part of a name to search them all. The gadget then offers that board's active sprint and its 15 most recently closed sprints; use the list in the gadget to switch between them. It works with company-managed and team-managed Scrum boards. Classic Kanban boards have no sprints and are not offered; a team-managed board without sprints shows a message instead.</p>
+<h2>What the numbers mean</h2>
+<table><thead><tr><th>Figure</th><th>Definition</th></tr></thead><tbody><tr><td>Committed at start</td><td>Work that was in the sprint when it started, in story points (or issue count when the sprint has no points)</td></tr><tr><td>Added</td><td>Work that joined after the start. "In the second half" counts additions after the middle of the planned sprint</td></tr><tr><td>Removed</td><td>Work that left the sprint after the start and is not in it at the end</td></tr><tr><td>Scope creep</td><td>Added divided by committed</td></tr><tr><td>Churn</td><td>(Added + removed) divided by committed</td></tr><tr><td>Commitment delivered</td><td>Committed issues that were in a Done status category at the end of the sprint, each counted at its start estimate, divided by committed. An issue re-estimated upward during the sprint still counts at its start estimate, so the share cannot pass 100%. For an active sprint, "the end" is now</td></tr><tr><td>Final</td><td>Work in the sprint at the end, at end estimates</td></tr></tbody></table>
+<p>An issue that was removed and later put back counts as unchanged. An issue that was added and then removed again is listed in its own table, "Added, then removed again", and does not count as added. When an issue joined before it had an estimate, it is weighed by the first estimate it got inside the sprint.</p>
+<p>"Re-estimated while in the sprint" lists issues whose story points changed after the start, with the old value, the new value and the date. The note under the daily chart gives the net effect of those changes on scope.</p>
+<p>The daily chart shows scope and completed work at the end of each UTC day.</p>
+<h2>How it works</h2>
+<p>The gadget rebuilds the sprint from Jira's change history: the Sprint field for who was in the sprint, the estimation field of the board for points, and the status history for what was done at a given time. "Done" means the Done status category, not the resolution field, so workflows without resolutions work.</p>
+<p>Issues that left the sprint are no longer returned by a sprint query. The gadget finds them by searching the board's filter for issues that changed since the sprint started and are not members now.</p>
+<h2>Limits</h2>
+<ul><li>Up to 500 issues in the sprint (sub-tasks are left out).</li><li>The active sprint and the 15 most recently closed sprints of a board are offered; older ones are not.</li><li>Up to 500 recently changed board issues are scanned for removals. If there are more, the gadget says some removals may be missing.</li><li>If the board's filter cannot be read, for example because the viewer may not see it, committed, removed, scope creep, churn and delivered show a dash instead of a number that could be wrong, and the chart leaves out the committed and removed bars.</li><li>Issues deleted from Jira, or moved out of the board's projects, drop out of the report.</li><li>A sprint that has not started yet shows a message instead of numbers.</li></ul>
+</body>
+</html>
